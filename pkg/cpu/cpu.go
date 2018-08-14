@@ -51,7 +51,7 @@ func (c *CPU) RunJob(wg *sync.WaitGroup) {
 				if err != nil {
 					log.Println(err)
 				}
-				if name != "prom-top1" {
+				if name != "prom-top" {
 					p := ProcessCPU{Name: name, CPUUsedPercent: cpuPercent}
 					p.Encode()
 					reversed_freq[p.CPUUsedPercent] = append(reversed_freq[p.CPUUsedPercent], p)

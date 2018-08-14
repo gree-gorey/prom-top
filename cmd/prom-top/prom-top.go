@@ -40,7 +40,7 @@ func main() {
 
 	http.Handle("/metrics", prometheus.Handler())
 	go Run(int(3), true)
-	log.Fatal(http.ListenAndServe(":8081", nil))
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }
 
 func Run(interval int, debug bool) {
