@@ -19,12 +19,18 @@ type CPU struct {
 type ProcessCPU struct {
 	Name           string  `json:"name"`
 	CPUUsedPercent float64 `json:"cpu_used_percent"`
-	Chars          [10]int
+	Chars          [20]int
 	Rank           int
 }
 
 func (p *ProcessCPU) Encode() {
-  for i, _ := range p.Name {
+	var name string
+	if (len(p.Name) > 20) {
+		name = p.Name[:20]
+	} else {
+		name = p.Name
+	}
+  for i, _ := range name {
     p.Chars[i] = int([]rune(p.Name)[i])
   }
 }
@@ -65,8 +71,8 @@ func (c *CPU) RunJob(wg *sync.WaitGroup) {
 		numbers = append(numbers, val)
 	}
 	sort.Sort(sort.Reverse(sort.Float64Slice(numbers)))
-	if len(numbers) > 5 {
-		numbers = numbers[:5]
+	if len(numbers) > 10 {
+		numbers = numbers[:10]
 	}
 	for i, number := range numbers {
 		for _, p := range reversed_freq[number] {

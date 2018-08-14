@@ -13,7 +13,7 @@ import (
 )
 
 var (
-	chars [10]*prometheus.GaugeVec
+	chars [20]*prometheus.GaugeVec
 	cpuUsage *prometheus.GaugeVec
 )
 
