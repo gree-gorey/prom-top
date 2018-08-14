@@ -40,11 +40,11 @@ func main() {
 
 	http.Handle("/metrics", prometheus.Handler())
 	go Run(int(3), true)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":8081", nil))
 }
 
 func Run(interval int, debug bool) {
-	c := cpu.CPU{Debug: false}
+	c := cpu.CPU{Debug: true}
 	for {
 		var wg sync.WaitGroup
 		wg.Add(1)
